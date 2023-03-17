@@ -20,20 +20,25 @@ def write_in_csv(dataframe, file):
 def print_dataframe(dataframe, print_column=True, print_rows=True):
     # print column names
     if print_column:
-        print(",".join([column for column in dataframe]))
-
+        print(list(dataframe.columns))
     # print rows one by one
     if print_rows:
         for index, row in dataframe.iterrows():
             print(",".join([str(row[column]) for column in dataframe]))
+            if index == 10 :
+                break
 
 
 if __name__ == '__main__':
     csv_file = 'Demographic_Statistics_By_Zip_Code.csv'  # path to the downloaded csv file
     dataframe = read_csv(csv_file)
 
-    print("Loading the csv file")
-    print_dataframe(dataframe)
+    print("Columns of csv file")
+    print_dataframe(dataframe, True, False)
+    print("Rows of csv file")
+    print_dataframe(dataframe, False, True)
 
-    print("Write the dataframe as a csv file")
-    write_in_csv(dataframe, "Demographic_Statistics_New.csv")  # path where the new csv file is stored
+
+
+    #print("Write the dataframe as a csv file")
+    #write_in_csv(dataframe, "Demographic_Statistics_New.csv")  # path where the new csv file is stored
